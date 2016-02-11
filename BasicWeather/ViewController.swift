@@ -46,6 +46,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureView()
         retreiveWeatherForecast()
         bgImage.image = UIImage(named: "NYC")
         
@@ -54,6 +55,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = UIColor(red: 170/255.0, green: 131/255.0, blue: 224/225.0, alpha: 1.0)
+        view.tintColor = UIColor.clearColor()
+        if let header = view as? UITableViewHeaderFooterView{
+            header.textLabel?.font = UIFont(name: "HelveticalNeue-Thin", size: 14.0)
+            header.textLabel?.textColor = UIColor.whiteColor()
+        }
     }
     
     func retreiveWeatherForecast(){
@@ -88,7 +98,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         retreiveWeatherForecast()
     }
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
     
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Forecast"
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weeklyWeather.count
@@ -96,12 +112,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell")!
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! DailyTableViewCell
         
         let dailyWeather = weeklyWeather[indexPath.row]
-        cell.textLabel?.text = dailyWeather.day
+        
+        if let maxTemp = dailyWeather.maxTemp,
+        let minTemp = dailyWeather.minTemp{
+            cell.tempLabel.text = "↑\(maxTemp)º↓\(minTemp)º"
+        }
+        cell.dayLabel.text = dailyWeather.day
+        
+        cell.backgroundColor = UIColor.clearColor()
         
         return cell
+    }
+    
+    func configureView(){
+        weekTableView.rowHeight = 64
+        weekTableView.backgroundColor = UIColor.clearColor()
     }
 
 }
