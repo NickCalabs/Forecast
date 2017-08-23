@@ -39,13 +39,6 @@ struct Daily {
         
     }
     
-    
-    func timeStringFromUnixTime(unixTime: Double) -> String {
-        let date = NSDate(timeIntervalSince1970: unixTime)
-        dateFormatter.dateFormat = "hh:mm a"
-        return dateFormatter.stringFromDate(date)
-    }
-    
     func dayStringFromTime(unixTime: Double) -> String {
         let date = NSDate(timeIntervalSince1970: unixTime)
         dateFormatter.locale = NSLocale(localeIdentifier: NSLocale.currentLocale().localeIdentifier)

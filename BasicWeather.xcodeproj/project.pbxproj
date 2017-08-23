@@ -73,7 +73,6 @@
 				01AF187B1C6BCC0800573C2E /* LaunchScreen.storyboard */,
 				01AF187E1C6BCC0800573C2E /* Info.plist */,
 				01AF18721C6BCC0800573C2E /* AppDelegate.swift */,
-				01AF18931C6C5C9900573C2E /* Weather.swift */,
 			);
 			path = BasicWeather;
 			sourceTree = "<group>";
@@ -81,6 +80,7 @@
 		01AF188C1C6C4FCF00573C2E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				01AF18931C6C5C9900573C2E /* Weather.swift */,
 				01AF18881C6C1A9600573C2E /* Network.swift */,
 				01AF188A1C6C20BA00573C2E /* Forecast.swift */,
 				01AF18861C6BCDD600573C2E /* CurrentWeather.swift */,
